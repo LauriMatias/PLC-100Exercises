@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{2e6786d1-c064-428e-a199-bdaaa8521a4f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	_LampIsOn		: BOOL := FALSE;
+	_ButtonIsPushed	: BOOL := FALSE;
+END_VAR
+
+// This program operates a lamp. When a button is pushed, and held down, the lamp turns on.
+// When the button is released, the lamp turns off. Instead of using a real lamp and a button,
+// they are in the visualization.]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF _ButtonIsPushed THEN
+	_LampIsOn := TRUE;
+ELSE
+	_LampIsOn := FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
