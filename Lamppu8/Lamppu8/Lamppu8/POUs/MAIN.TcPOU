@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{1cf249fa-581f-4c64-a756-795567a108f5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	_Button1	:BOOL;
+	_Button2	:BOOL;
+	_LampR		:BOOL; //Red light
+	_LampY		:BOOL; //Yellow light
+	_LampG		:BOOL; //Green light
+END_VAR
+
+
+//This lamp program turns three lights on and off. If button 1 is pushed,
+//the red light comes on, if button 2 is pushed, the yellow light comes on,
+//if both buttons are pushed, the green light comes on, and if neither button
+//is pushed, no lights are on. This is the 8th exercise of the book, exercises
+//3-7 were skipped since they are more or less the same as this one and the
+//first two.]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF _Button1 AND NOT _Button2 THEN
+	_LampR := TRUE;
+	
+	_LampG := FALSE;
+	_LampY := FALSE;
+ELSIF _Button2 AND NOT _Button1 THEN
+	_LampY := TRUE;
+	
+	_LampG := FALSE;
+	_LampR := FALSE;
+ELSIF _Button1 AND _Button2 THEN
+	_LampG := TRUE;
+	
+	_LampY := FALSE;
+	_LampR := FALSE;
+ELSE
+	_LampG := FALSE;
+	_LampY := FALSE;
+	_LampR := FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
