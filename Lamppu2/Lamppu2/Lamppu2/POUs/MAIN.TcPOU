@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{95f99f77-5243-420d-b19c-822d579e8137}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	_Lamp		:BOOL;
+	_Button1	:BOOL;
+	_Button2	:BOOL;
+END_VAR
+
+//This program simulates the operation of a lamp, which can be turned on
+//by pressing two separate buttons. Both buttons are toggle buttons, so one
+//can be pressed after the other. Both buttons have to be pressed to turn
+//the light on.]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF _Button1 AND _Button2 THEN
+	_Lamp := TRUE;
+	
+ELSE
+	_Lamp := FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
