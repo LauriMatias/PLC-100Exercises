@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Simulation" Id="{264808e2-ab5a-4cca-b5e4-351f2b68a987}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Simulation
+VAR
+	_ConveyorTimer		:TON;				//Where in the conveyor is the package
+	_TimeOnConveyor		:TIME;
+END_VAR
+
+
+//This program simulates the conveyor's movement, which is represented as a bar in the visualisation.
+//Placing of a package on the conveyor is represented with a variable, and that's when the timer starts.
+//If the conveyor is stopped while the package moves, the value for it's location must be retained (in
+//this case the time value is retained).]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF GVL._MotorOnOff AND GVL._PackageIsPlaced THEN
+	_ConveyorTimer(IN:= GVL._PackageIsPlaced, PT:= (GVL._MovementTime-_TimeOnConveyor), Q=> GVL._SensorCovered, ET=> _TimeOnConveyor);
+	IF GVL._SensorCovered THEN
+		GVL._MotorOnOff := FALSE;
+	ELSIF NOT GVL._SensorCovered AND GVL._PackageIsPlaced THEN
+		_TimeOnConveyor := GVL._RetainedTimeOnConveyor;
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
