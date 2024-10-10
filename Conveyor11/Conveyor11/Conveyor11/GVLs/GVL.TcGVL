@@ -9,6 +9,8 @@ VAR_GLOBAL
 	_PackageIsPlaced		:BOOL;
 	_RetainedTimeOnConveyor	:TIME;
 	_MovementTime			:TIME := T#10S;		//How long it takes for the package to move through the conveyor
+	_InsertPackage			:BOOL;
+	_RemovePackage			:BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

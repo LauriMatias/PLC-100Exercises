@@ -11,8 +11,25 @@
               <l n="LanguageTexts" t="ArrayList" />
             </o>
             <o>
+              <v n="TextID">"436"</v>
+              <v n="TextDefault">"Insert"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"116"</v>
+              <v n="TextDefault">"Insert
+package"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
               <v n="TextID">"461"</v>
               <v n="TextDefault">"Motor M1 On/Off"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"887"</v>
+              <v n="TextDefault">"Remove
+package"</v>
               <l n="LanguageTexts" t="ArrayList" />
             </o>
           </l>

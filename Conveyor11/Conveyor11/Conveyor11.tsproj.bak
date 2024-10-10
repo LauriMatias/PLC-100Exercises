@@ -10,7 +10,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{6C8E20EB-048E-4E77-9106-92457C5BE293}" Name="Conveyor11" PrjFilePath="Conveyor11\Conveyor11.plcproj" TmcFilePath="Conveyor11\Conveyor11.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{831B9BCC-90FC-8255-2C37-CD9A00E4C5EC}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{2A885AD9-DD10-5F79-6455-1AB365C66616}" TmcPath="Conveyor11\Conveyor11.tmc">
 					<Name>Conveyor11 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
