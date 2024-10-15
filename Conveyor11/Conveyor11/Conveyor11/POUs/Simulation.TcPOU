@@ -5,6 +5,7 @@
 VAR
 	_ConveyorTimer		:TON;				//Where in the conveyor is the package
 	_TimeOnConveyor		:TIME;
+	_Timer				:TIME;
 END_VAR
 
 
@@ -13,27 +14,25 @@ END_VAR
 //If the conveyor is stopped while the package moves, the value for it's location must be retained (in
 //this case the time value is retained).]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//This simulates the user placing a package on the conveyor, which is reprecented
-//in the VISU as pressing a button.
+      <ST><![CDATA[//This simulates the user placing a package on the conveyor or removing it,
+//which is reprecented in the VISU as pressing a button.
 IF GVL._InsertPackage THEN
 	GVL._PackageIsPlaced := TRUE;
+ELSIF GVL._RemovePackage THEN
+	GVL._PackageIsPlaced := FALSE;
+	GVL._RetainedTimeOnConveyor := T#0S;
+	GVL._RemovePackage := FALSE;
 END_IF
 
-//This moves the progression bar in the VISU, which simulates the movement of
+//RetainedTimeOnConveyor moves the progression bar in the VISU, which simulates the movement of
 //the package on the conveyor. The conveyor might move regardless of the package
 //being on it or not, but we don't see the progression without a package.
-IF GVL._MotorOnOff AND GVL._PackageIsPlaced THEN
-	_ConveyorTimer(IN:= GVL._PackageIsPlaced, PT:= GVL._MovementTime, Q=> GVL._SensorCovered, ET=> _TimeOnConveyor);
-	IF GVL._SensorCovered THEN
-		GVL._MotorOnOff := FALSE;
-	ELSIF NOT GVL._SensorCovered AND GVL._PackageIsPlaced THEN
-		GVL._RetainedTimeOnConveyor := _TimeOnConveyor;
-	ELSIF GVL._RemovePackage THEN
-		GVL._PackageIsPlaced := FALSE;
-		GVL._RetainedTimeOnConveyor := T#0S;
-	END_IF
-END_IF
-]]></ST>
+_Timer := SEL(GVL._RetainedTimeOnConveyor <> _TimeOnConveyor, GVL._MovementTime, GVL._MovementTime - GVL._RetainedTimeOnConveyor);
+_ConveyorTimer(IN:= GVL._PackageIsPlaced AND GVL._Switch, PT:= _TImer, Q=> GVL._SensorCovered, ET=> _TimeOnConveyor);
+IF NOT GVL._SensorCovered AND GVL._PackageIsPlaced AND _TimeOnConveyor <> T#0S THEN
+	GVL._InsertPackage := FALSE;
+	GVL._RetainedTimeOnConveyor := _TimeOnConveyor;
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

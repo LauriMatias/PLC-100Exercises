@@ -4,7 +4,15 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 END_VAR
-]]></Declaration>
+
+
+//This program moves a conveyor belt with a motor. A box can be placed on the belt
+//and it's progression followed (VISU's progression bar). When the box reaches the
+//end of the belt, a sensor lights up and shuts down the motor. The visualisation
+//requires the user to first turn on the motor (switch) and then place a box (left
+//button). To reset the system, user needs to press the right button. If the
+//conveyor is stopped before the box reaches the end, progression cannot be
+//continued from the same position yet. This is a planned future addition.]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT GVL._SensorCovered AND GVL._Switch THEN
 	GVL._MotorOnOff := TRUE;
