@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Switch" Id="{a0cb1bcd-01f9-4361-a31e-d79f49bbe391}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Switch
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="IsPressed" Id="{782b38c9-18b2-4323-a331-ba68dd02b06f}">
+      <Declaration><![CDATA[METHOD PUBLIC IsPressed : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

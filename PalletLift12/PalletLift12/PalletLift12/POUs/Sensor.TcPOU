@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Sensor" Id="{536536a2-3df6-4334-8e4c-d88ca9b76854}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Sensor
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Triggered" Id="{d2992bb6-0f90-4c42-9df9-3b231c5afb70}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Triggered : BOOL]]></Declaration>
+      <Get Name="Get" Id="{09fec3f4-a157-4aab-84de-4dc875f2921a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

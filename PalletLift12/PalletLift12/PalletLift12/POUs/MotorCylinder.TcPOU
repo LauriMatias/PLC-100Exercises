@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MotorCylinder" Id="{93b63c35-c519-465c-90d5-a8afb40de153}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MotorCylinder
+VAR
+END_VAR
+VAR_INPUT
+	_CylinderMaxLength		:REAL; //In mm
+END_VAR
+
+//Cylinder distance in mm, as if measured by the motor cylinder assembly]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="CylinderDistance" Id="{23fa0ae7-f670-48ee-9399-482ed890f3c3}">
+      <Declaration><![CDATA[PROPERTY PUBLIC CylinderDistance : REAL]]></Declaration>
+      <Get Name="Get" Id="{df5bc033-32bd-4c59-bed8-db2b0125f79a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{0113d7f5-614e-41b7-9d23-e8d719b167b2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="Extend" Id="{d88cf953-36d4-41a9-9635-9131acba7833}">
+      <Declaration><![CDATA[// Returns true if extending is possible
+METHOD PUBLIC Extend : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT IsFullyExtended() THEN
+	RotateMotorExtend := TRUE;
+	Extend := TRUE;
+ELSE
+	Extend := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsFullyExtended" Id="{7558e62f-174d-49f5-969f-361a4348b6a8}">
+      <Declaration><![CDATA[METHOD PRIVATE IsFullyExtended : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _CylinderDistance >= 100 THEN
+	IsFullyExtended := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsFullyRetracted" Id="{e92057c1-cbe5-4eb5-b844-94cf3a8b5398}">
+      <Declaration><![CDATA[METHOD PRIVATE IsFullyRetracted : BOOL]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _CylinderDistance <= 0 THEN
+	IsFullyRetracted := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Retract" Id="{9d638ba2-cdad-40dd-9c0d-13fc9d93c8f4}">
+      <Declaration><![CDATA[METHOD PUBLIC Retract : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="RotateMotorExtend" Id="{7a23c0bd-e8e4-483b-a167-560bcbdb5dae}">
+      <Declaration><![CDATA[PROPERTY PUBLIC RotateMotorExtend : BOOL]]></Declaration>
+      <Set Name="Set" Id="{4cb0d5af-8a7a-4527-afeb-fa580e5bd312}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Simulation" Id="{f642e345-0ca8-4a57-a78d-e726bf0c6a88}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Simulation
+VAR
+	_CylinderDistance		:REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[GVL._Cylinder.CylinderDistance := _CylinderDistance;
+
+IF GVL._Cylinder.Extend THEN
+	_CylinderDistance := _CylinderDistance + 0.1;
+ELSIF GVL._Cylinder.Retract THEN
+	_CylinderDistance := _CylinderDistance - 0.1;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

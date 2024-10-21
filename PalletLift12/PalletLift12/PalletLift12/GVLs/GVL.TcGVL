@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <GVL Name="GVL" Id="{c765dbbe-5813-4942-8b4c-7de7e631d4b6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	_ExtendButton			:Switch();
+	_RetractButton			:Switch();
+	_Cylinder				:MotorCylinder(CylinderMaxLength := 500.0);
+	_UpLimitSensor			:Sensor();
+	_DownLimitSensor		:Sensor();
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{1fa87df8-5c71-4a38-9260-66f446a8af13}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF GVL._ExtendButton.IsPressed AND NOT GVL._UpLimitSensor.Triggered THEN
+	GVL._Cylinder.RotateMotorExtend := TRUE;
+ELSIF GVL._ExtendButton.IsPressed AND GVL._UpLimitSensor.Triggered THEN
+	{warning 'Table reached the upper limit, can not lift further'}
+	//Tähän joku koodi että sama teksti ei tulostu joka syklillä jos nappula pidetään pohjassa
+END_IF
+
+IF GVL._RetractButton.IsPressed AND NOT GVL._DownLimitSensor.Triggered THEN
+	GVL._Cylinder.Retract := TRUE;
+ELSIF GVL._RetractButton.IsPressed AND GVL._DownLimitSensor.Triggered THEN
+	{warning 'Table reached the lower limit, can not depress further'}
+	//Tähän joku koodi että sama teksti ei tulostu joka syklillä jos nappula pidetään pohjassa
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
